@@ -3,24 +3,24 @@
 {% block page_content %}
 
 <div class="page-header">
-    <h1>Person Form</h1>
-    <p>Enter your First Name and Last Name:   </p>
+    <h1>Edit Form</h1>
+    <p>Edit your Name and Last Name:   </p>
         <br>
-            <form action="/person_detail" method="post">
+            <form action="/person_edit" method="post">
                 <input type="hidden" id="op" name="op" value="I">
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup_id">ID</span>
-                    <input type="text" class="form-control" name="id_person" aria-label="Sizing example input" aria-describedby="inputGroup_idt" autocomplete="off">
+                    <input type="text" value="{{value._id_person}}" value="Texto" readonly onmousedown="return false;" class="form-control" name="id_person" aria-label="Sizing example input" aria-describedby="inputGroup_idt" autocomplete="off">
                 </div>
 
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup_name">First name</span>
-                    <input type="text" class="form-control" name="first_name" aria-label="Sizing example input" aria-describedby="inputGroup_name" autocomplete="off">
+                    <input type="text" value="{{value._name}}"class="form-control" name="first_name" aria-label="Sizing example input" aria-describedby="inputGroup_name" autocomplete="off">
                 </div>
 
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup_lastName">Last Name</span>
-                    <input type="text" class="form-control" name="last_name" aria-label="Sizing example input" aria-describedby="inputGroup_lastName" autocomplete="off">
+                    <input type="text" value="{{value._last_name}}"class="form-control" name="last_name" aria-label="Sizing example input" aria-describedby="inputGroup_lastName" autocomplete="off">
                 </div>
                 <br >
                 <input class="btn btn-primary" type="submit" name="form" value="Submit" />
