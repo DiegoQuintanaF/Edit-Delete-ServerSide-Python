@@ -36,37 +36,34 @@ def person_update(id):
     for person in model:
         if person.id_person == id:
             edit_person = person
-            break
-    return render_template('person_update.html', value=edit_person)
-
+            return render_template('person_update.html', value=edit_person)
+    return render_template('404.html')
 
 @app.route('/person_edit', methods=['POST'])
 def person_edit():
     id_person = request.form['id_person']
-    first_name = request.form['first_name']
-    last_name = request.form['last_name']
     old_person = None
     for person in model:
         if person.id_person == id_person:
-            old_person = Person(person._id_person, person._name, person._last_name)
-            person.name = first_name
-            person.last_name = last_name
+            old_person = Person(person.id_person, person.name, person.last_name)
+            person.name = request.form['first_name']
+            person.last_name = request.form['last_name']
             msg = '{old_person} was updated to {new_person}'.format(
                 old_person=old_person, new_person=person)
             return render_template('person_detail.html', value=msg)
-    return render_template('person_detail.html', value='Was not found')
+    return render_template('404.html')
 
 
 @app.route('/person_delete/<id>', methods=['GET'])
 def person_delete(id):
     for person in model:
-        if person._id_person == id:
+        if person.id_person == id:
             temporal_person = person
             model.remove(person)
             msg = '{temporal_person} was deleted'.format(
                 temporal_person=temporal_person)
             return render_template('person_detail.html', value=msg)
-    return render_template('person_detail.html', value='Person not found')
+    return render_template('404.html')
 
 
 @app.route('/people')
